@@ -10,50 +10,34 @@ Please clone this repo and follow the installation instructions below to get
 set up; once you're set up, your goal is to meet the requirements outlined at
 the bottom of this readme.
 
-## Installation Instructions
-1. Clone this repo to your machine
-2. Create any virtualenvs as necessary
-3. If you don't have yarn installed on your machine already, run `brew install yarn`. *If you're not working in an OSX environment, please refer to [these docs](https://yarnpkg.com/lang/en/docs/install/#windows-tab)*
-4. `cd rm-fs-code-test`
-5. Run `pip install -e .`
-6. `cd sampleapp_fe`
-7. Run `yarn install`
-
 ## Development Instructions
 
 ### Front End
-1. From the root directory, `cd sampleapp_fe` and run `yarn start` to spin up the webpack-dev-server
-2. All code changes will automatically be reflected at **localhost:8080** upon saving
-3. When you're done with your frontend code and want it to be served via sampleapp_be, run `yarn build`
 
----
-### Back End
-1. From the root directory, run `pserve development.ini --reload`
-2. All code changes will be reflected at **locahost:9000**
+React frontend:
 
-## Requirements
-1. Pyramid backend:
-    * Render React application at `/` (This has been setup for you already)
-    * Parse the provided CSV file in `sampleapp_be/assets/properties.csv` and serve the results as a JSON object at `/data`
-    * Results must contain **only properties in California**, and contain the following:
-        1. PROP_NAME
-        2. ADDRESS
-        3. CITY
-        4. STATE_ID
-        5. ZIP
-        6. MISSING_FIELD_COUNT (number of fields in a record that is missing data)
-        7. MISSING_DATA_ENCODING - a number where each digit indicates consecutive columns with and without data
-            - e.g. [a,b,c,,,d,e] will be 322 (3 columns with data followed by 2 columns with missing data followed by 2 columns with data)
+Given the following JSON string
 
-2. React frontend:
-    * Render 1 button that fetches data from `/data` when pressed
-    * Upon success, render a table of the data
-    * Feel free to install other libs as necessary, but be prepared to explain why
-    * Must have the following components (NOTE: These are React components that you create):
+    {
+        "headerData": ["30%", "$2000000", "85%"],
+        "contentA": "This should be displayed in Panel A. This is visible by default"
+        "contentB": "This should be displayed in Panel B. This should be hidden by default"
+    }
 
+1. Please implement the following
 
-          <Button />
-          <Table />
-          <Tr />
-          <Td />
+# Add code to parse the json string.
+# Displays header data horizontally in a header section. This is always visible
+# The header section should display a "-" sign by default. When a user clicks this, it will change to a "+" sign.
+# Displays a content section by default under the header section. When the "-" sign in the header is clicked, this content section becomes hidden.
+# The content section contains 2 panels side by side. The first panel (panel A) should display contentA data. Content in this panel is visible by default.
+# The second panel (panel B) should display contentB data. The contents of this panel is hidden by default. The background of this should be #EEEEEE by default.
+# When panel B (with the hidden content) is clicked the background should change to #FFFFFF and the content should become visible.
+# When panel B content becomes visible, panel A content should become hidden and the background color should change to #EEEEEE.
+# The hide/show behavior above should be repeatable any number of times.
 
+See mockup.png for a reference.
+
+2. Implement the case where you have to render the component you built in 1. multiple times.
+
+3. Please implement this using React and any other libraries you think may be necessary. (Redux, Styled components etc). Please write a short paragraph justifying your choice of your libraries.
